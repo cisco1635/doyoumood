@@ -3,24 +3,16 @@ const fs = require('fs');
 /**
  * get all data from the file
  */
-module.exports.postData = function (req, res) {
+module.exports.postVote = function (req, res) {
     var obj;
     var today = Date.now();
     var todayFormat =  [d.getFullYear(),pad(d.getMonth()+1),pad(d.getDate())].join('');
     var path = '../data/' + todayFormat + '.data';
+    var mood = req.params.mood;
+    console.log(mood);
 	fs.readFile(path, 'utf8', function (err, data) {
         obj = JSON.parse(data);
-        
-		res.status(200).json(obj);
-	});
-module.exports.postData = function (req, res) {
-    var obj;
-    var today = Date.now();
-    var todayFormat =  [d.getFullYear(),pad(d.getMonth()+1),pad(d.getDate())].join('');
-    var path = '../data/' + todayFormat + '.data';
-	fs.readFile(path, 'utf8', function (err, data) {
-        obj = JSON.parse(data);
-        switch(expression) {
+        switch(mood) {
             case "overjoyed":
               obj.data.overjoyed = obj.data.overjoyed+1;
               break;

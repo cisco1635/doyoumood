@@ -4,6 +4,7 @@ module.exports = function(app) {
   const main = require('../controller/main.js');
  
   app.get('/api/votes', vote.getVote);
+  app.post('/api/votes/:mood', vote.postVote);
 
   /*app.get('*', main.get);*/
 };
