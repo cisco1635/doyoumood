@@ -1,32 +1,9 @@
-const express = require('express');
-const app = express();
-const voteRoutes = express.Router();
+module.exports = function(app) {
+  const vote = require('../controller/vote.js');
+  const report = require('../controller/report.js');
+  const main = require('../controller/main.js');
+ 
+  app.get('/api/votes', vote.getVote);
 
-// Require Game model in our routes module
-let Vote = require('../models/Vote');
-
-// Defined store route
-voteRoutes.route('/add').post(function (req, res) {
-  let vote = new Vote(req.body);
-   vote.save()
-    .then(vote => {
-    res.status(200).json({'game': 'CoGamein added successfully'});
-    })
-    .catch(err => {
-    res.status(400).send("unable to save to database");
-    });
-});
-
-// Defined get data(index or listing) route
-voteRoutes.route('/').get(function (req, res) {
-   Vote.find(function (err, votes){
-    if(err){
-      console.log(err);
-    }
-    else {
-      res.json(votes);
-    }
-  });
-});
-
-module.exports = voteRoutes;
+  /*app.get('*', main.get);*/
+};
