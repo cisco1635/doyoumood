@@ -1,0 +1,32 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="active">
+        <a routerLink="" routerLinkActive="active">
+          Vote
+        </a>
+      </li>
+	  <li>
+        <a routerLink="" routerLinkActive="active">
+          Report
+        </a>
+      </li> 	  
+    </ul>
+  </div>
+</nav>
+
+<div class="container col-xs-12 text-center">
+	<h1>
+    Welcome to Indigo Nikoniko!
+	</h1>
+	<br /><br /><br />
+	<div class="col-xs-12">
+		<img src="assets/images/5.png" width="200" (click)="addVote(5)">
+		<img src="assets/images/4.png" width="200" ng-click="vote(4)">
+		<img src="assets/images/3.png" width="200" ng-click="vote(3)">
+		<img src="assets/images/2.png" width="200" ng-click="vote(2)">
+		<img src="assets/images/1.png" width="200" ng-click="vote(1)">
+	</div>
+  
+	<router-outlet></router-outlet>
+</div>
