@@ -12,10 +12,6 @@ module.exports.postVote = function (req, res) {
     var template = './data/template.data';
     var mood = req.params.mood;
 
-    // delete file
-    if (fs.existsSync(path)) {
-        //fs.unlinkSync(path);
-    }
     // use template for the day if not exists
     var data;
     if (!fs.existsSync(path)) {
@@ -25,9 +21,7 @@ module.exports.postVote = function (req, res) {
         data = fs.readFileSync(path,'utf8');
     }
 
-    console.log("Parse file : " + data);
     obj = JSON.parse(data);
-    console.log("before total:"+obj);
     switch(mood) {
         case "overjoyed":
             obj.overjoyed = obj.overjoyed+1;
@@ -39,9 +33,7 @@ module.exports.postVote = function (req, res) {
             obj.neutral = obj.neutral+1;
             break;
         case "annoyed":
-            console.log("before:"+obj.annoyed);
             obj.annoyed = obj.annoyed+1;
-            console.log("after:"+obj.annoyed);
             break;
         case "angry":
             obj.angry = obj.angry+1;
@@ -50,7 +42,6 @@ module.exports.postVote = function (req, res) {
             break;
         }
     
-    console.log("after total:"+obj);
     fs.writeFileSync(path, JSON.stringify(obj), 'utf8', function(err) {
         if (err) {
             console.log(err);
