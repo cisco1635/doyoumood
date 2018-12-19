@@ -1,5 +1,4 @@
 const fs = require('fs');
-const utf8 = require('utf8');
 
 /**
  * post a vote
@@ -9,7 +8,7 @@ module.exports.postVote = function (req, res) {
     var d = new Date();
     var todayFormat =  [d.getFullYear(),d.getMonth()+1,d.getDate()].join('');
     var path = './data/' + todayFormat + '.data';
-    var template = './data/template.data';
+    var template = './data/00000000.data';
     var mood = req.params.mood;
 
     // use template for the day if not exists
@@ -55,3 +54,5 @@ module.exports.postVote = function (req, res) {
 module.exports.getVote = function (req, res) {
 	res.status(200).json({"id":1});
 }
+
+
