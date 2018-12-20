@@ -10,7 +10,7 @@ module.exports.postVote = function (req, res) {
     var path = './data/' + todayFormat + '.data';
     var template = './data/00000000.data';
     var mood = req.params.mood;
-
+    console.log("begin postVote : " + todayFormat + " - "+mood);
     // use template for the day if not exists
     var data;
     if (!fs.existsSync(path)) {
@@ -22,19 +22,19 @@ module.exports.postVote = function (req, res) {
 
     obj = JSON.parse(data);
     switch(mood) {
-        case "overjoyed":
+        case "5":
             obj.overjoyed = obj.overjoyed+1;
             break;
-        case "happy":
+        case "4":
             obj.happy = obj.happy+1;
             break;
-        case "neutral":
+        case "3":
             obj.neutral = obj.neutral+1;
             break;
-        case "annoyed":
+        case "2":
             obj.annoyed = obj.annoyed+1;
             break;
-        case "angry":
+        case "1":
             obj.angry = obj.angry+1;
             break;
         default:
@@ -47,7 +47,7 @@ module.exports.postVote = function (req, res) {
             res.status(500).json(obj);
         }
     });
-
+    console.log("end postVote : " + todayFormat + " - "+mood);
     res.status(200).json(obj);
 } 
 

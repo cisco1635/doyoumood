@@ -9,15 +9,9 @@ export class VoteService {
   constructor(private http:HttpClient) { }
   
   addVote(nb) {
-	const uri = 'http://localhost:4000/votes/add';
-	
-	// get vote for the date
-	// increment 1 for nb
-    const obj = {
-      date: Date.now(),
-      nb5: 1
-    };
+    const uri = 'http://localhost:3000/api/votes/';
+    var obj = nb;
     this.http.post(uri, obj)
-        .subscribe(res => console.log('Done'));
+             .subscribe(res => console.log('Done'));
   }
 }
