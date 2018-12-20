@@ -7,7 +7,7 @@ import { VoteService } from './vote.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'niko2API';
+  title = 'Do you mood ?';
   constructor(private voteservice : VoteService) {
   }
   

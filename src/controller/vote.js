@@ -4,6 +4,7 @@ const fs = require('fs');
  * post a vote
  */
 module.exports.postVote = function (req, res) {
+    console.log("begin postVote");
     var obj;
     var d = new Date();
     var todayFormat =  [d.getFullYear(),d.getMonth()+1,d.getDate()].join('');
