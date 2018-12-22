@@ -1,12 +1,12 @@
 # doyoumood
 A simple app to measure mood of your team.
 
-## Run in production
+### run in production
 
 At root level, launch "node server.js" command
 Client side is served by node server
 
-## In development / Debug
+### in development / debug
 
 At root level, launch 
   - "node server.js" 
