@@ -3,7 +3,7 @@ A simple app to measure mood of your team.
 
 ### run in production
 
-At root level, launch "node server.js" command
+At root level, launch "node server.js" command.
 Client side is served by node server
 
 ### in development / debug
