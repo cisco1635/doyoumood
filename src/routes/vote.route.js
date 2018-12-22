@@ -5,7 +5,8 @@ module.exports = function(app) {
  
   app.get('/api/votes', vote.getVote);
   app.post('/api/votes/:mood', vote.postVote);
+
   app.post('/api/report/:begin/:end', report.getData);
 
-  /*app.get('*', main.get);*/
+  app.get('/', main.get);
 };

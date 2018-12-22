@@ -9,9 +9,9 @@ export class VoteService {
   constructor(private http:HttpClient) { }
   
   addVote(nb) {
-    const uri = 'http://localhost:3000/api/votes/';
+    const uri = 'http://localhost:3000/api/votes/' + nb;
     var obj = nb;
-    this.http.post(uri, obj)
+    this.http.post(uri, {})
              .subscribe(res => console.log('Done'));
   }
 }

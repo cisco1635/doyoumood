@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VoteService } from './vote.service';
+import { VoteService } from './service/vote.service';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,4 @@ import { VoteService } from './vote.service';
 })
 export class AppComponent {
   title = 'Do you mood ?';
-  constructor(private voteservice : VoteService) {
-  }
-  
-  addVote(nb) {
-	this.voteservice.addVote(nb);
-  }
 }

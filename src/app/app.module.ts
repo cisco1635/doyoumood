@@ -5,13 +5,30 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
-const routes:Routes = [
+import { VoteComponent } from './component/vote/vote.component';
+import { ReportComponent } from './component/report/report.component';
 
+const routes:Routes = [
+  {
+    path: 'vote',
+    component: VoteComponent
+  },
+  {
+    path: 'report',
+    component: ReportComponent
+  },
+  {
+    path: '',  
+    redirectTo: '/vote', 
+    pathMatch: 'full'
+  }
 ]
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VoteComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
