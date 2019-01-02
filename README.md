@@ -12,4 +12,4 @@ At root level, launch
   - "node server.js" 
   - "ng serve"
 
-Applicaiton will be visible at "http://localhost:4200" adress
+Application will be visible at "http://localhost:4200" adress
