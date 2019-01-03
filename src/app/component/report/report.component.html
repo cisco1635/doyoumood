@@ -1,3 +1,66 @@
-<p>
-  report works!
-</p>
+<div class="container col-xs-12 text-center form-inline" style="display: block;">
+  <form>
+    <div class="input-group col-xs-5">
+      <span class="input-group-addon">First date</span>
+      <input id="FirstDate" class="form-control" style="width: 90%">
+    </div>
+    <div class="input-group col-xs-5">
+      <span class="input-group-addon">Second date</span>
+      <input id="SecondDate" class="form-control" style="width: 90%">
+    </div>
+    <div class="input-group col-xs-2">
+      <button class="btn btn-info form-control" type="button" id="search" style="width: 90%" onclick="generateDonut();generateLine();">
+        Search
+      </button>
+    </div>
+  </form>
+</div>
+<br><br>
+<div class="container col-xs-12 text-left form-inline" style="display: block;">
+  <div class="container dynamicTile">
+    <div class="row ">
+      <div class="col-sm-3 col-xs-3">
+        <div id="tileVotes" class="smallTile">
+          <div class="tileHeader"><h2>Votes</h2></div>
+          <div class="tileContent tileContentText">5</div>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-3">
+        <div id="tileMoyenne" class="smallTile">
+          <div class="tileHeader"><h2>Moyenne</h2></div>
+          <div class="tileContent tileContentImage">
+              <img src="assets/images/annoyed.png">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-6">
+        <div id="tileRepartition" class="bigTile">
+            <div class="tileHeader"><h2>Répartition</h2></div>
+            <table style="width:100%; height:80%;">
+              <tr>
+                <td style="width:80%"><div id="donutDiv"></div></td>
+                <td><img src="assets/images/overjoyed.png" width="50"><br/>
+                  <img src="assets/images/happy.png" width="50"><br/>
+                  <img src="assets/images/neutral.png" width="50"><br/>
+                  <img src="assets/images/annoyed.png" width="50"><br/>
+                  <img src="assets/images/angry.png" width="50"></td>
+              </tr>
+            </table>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-12 col-xs-12">
+        <div id="tileTendance" class="bigTile">
+            <div class="tileHeader"><h2>Tendance</h2></div>
+            <div id="lineDiv"></div>
+        </div>
+      </div>
+    </div>
+    <div id="push"></div>
+  </div>
+</div>
+<br>
+<br>
+  

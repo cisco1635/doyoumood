@@ -1,0 +1,68 @@
+/* CSS used here will be applied after bootstrap.css */
+.dynamicTile .col-sm-2.col-xs-4{
+    padding:5px;
+}
+
+.dynamicTile .col-sm-4.col-xs-8{
+    padding:5px;
+}
+
+.smallTile {
+    height: 250px;
+    width: 100%;
+}
+
+.bigTile {
+    height: 250px;
+    width: 100%;
+}
+
+#tileVotes{
+    background: rgb(0,93,233);
+}
+
+#tileMoyenne{
+    background: rgb(71,193,228);
+}
+
+#tileRepartition{
+    background: rgb(0,142,0);
+}
+
+#tileTendance{
+    background: rgb(209,70,37)
+}
+
+.tilecaption{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%); 
+    margin:0!important;
+    text-align: center;
+    color:white;
+    font-family: Segoe UI;
+    font-weight: lighter;
+}
+
+h2 {
+    color : black;
+}
+
+.tileHeader {
+    opacity: 0.3;
+    background-color: white;
+}
+
+.tileContent {
+    text-align: center;
+}
+
+.tileContentText {
+    font-size: 1000%;
+}
+
+.tileContentImage {
+    width: 100%;
+}

@@ -7,21 +7,21 @@ module.exports.getData = function (req, res) {
 
     // get template to concatenate data
     var template = './data/00000001.data';
-    var data = fs.readFileSync(template,'utf8');
+    var data = fs.readFileSync(template, 'utf8');
     var obj = JSON.parse(data);
 
     // go through all files
-    var i =1;
+    var i = 1;
     var trend = obj.trend;
-    fs.readdirSync(path).forEach(function(file) {
-        var longpath = path+'/'+file;
+    fs.readdirSync(path).forEach(function (file) {
+        var longpath = path + '/' + file;
         fs.statSync(longpath);
         // get name of file + compare with begin and end
-        var name = file.substring(0,8);
+        var name = file.substring(0, 8);
 
         if (name >= req.params.begin && name <= req.params.end) {
             // read file content
-            var f = fs.readFileSync(longpath,'utf8');
+            var f = fs.readFileSync(longpath, 'utf8');
             var data = JSON.parse(f);
             // concatenate data
             obj.repart.overjoyed = obj.repart.overjoyed + data.overjoyed;
@@ -32,13 +32,13 @@ module.exports.getData = function (req, res) {
 
             // Get trend
             var votes = data.overjoyed + data.happy + data.neutral + data.annoyed + data.angry;
-            trend["d"+i] = Math.round((data.overjoyed*5 + data.happy*4 + data.neutral*3 + data.annoyed*2 + data.angry)/votes);
-            i = i+1;
+            trend["d" + i] = Math.round((data.overjoyed * 5 + data.happy * 4 + data.neutral * 3 + data.annoyed * 2 + data.angry) / votes);
+            i = i + 1;
         }
     });
 
-    obj.nbVote = obj.repart.overjoyed+obj.repart.happy+obj.repart.neutral+obj.repart.annoyed+obj.repart.angry;
-    obj.moyenne = Math.round((obj.repart.overjoyed*5+obj.repart.happy*4+obj.repart.neutral*3+obj.repart.annoyed*2+obj.repart.angry)/obj.nbVote);
+    obj.nbVote = obj.repart.overjoyed + obj.repart.happy + obj.repart.neutral + obj.repart.annoyed + obj.repart.angry;
+    obj.moyenne = Math.round((obj.repart.overjoyed * 5 + obj.repart.happy * 4 + obj.repart.neutral * 3 + obj.repart.annoyed * 2 + obj.repart.angry) / obj.nbVote);
 
     res.status(200).json(obj);
 }

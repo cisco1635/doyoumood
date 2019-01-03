@@ -9,14 +9,12 @@ import { VoteService } from '../../service/vote.service';
 })
 export class VoteComponent implements OnInit {
 
-  constructor(private voteservice : VoteService) {  }
+  constructor(private voteservice: VoteService) { }
 
   ngOnInit() {
   }
 
-
-  
   addVote(nb) {
-	this.voteservice.addVote(nb);
+    this.voteservice.addVote(nb);
   }
 }
