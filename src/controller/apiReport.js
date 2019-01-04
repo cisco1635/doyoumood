@@ -2,11 +2,11 @@ const fs = require('fs');
 
 // get a report from begining date to end date
 module.exports.getData = function (req, res) {
-    var path = './data';
+    var path = './src/data';
     var nbVote = 0;
 
     // get template to concatenate data
-    var template = './data/00000001.data';
+    var template = './src/data/00000001.data';
     var data = fs.readFileSync(template, 'utf8');
     var obj = JSON.parse(data);
 
@@ -32,13 +32,28 @@ module.exports.getData = function (req, res) {
 
             // Get trend
             var votes = data.overjoyed + data.happy + data.neutral + data.annoyed + data.angry;
-            trend["d" + i] = Math.round((data.overjoyed * 5 + data.happy * 4 + data.neutral * 3 + data.annoyed * 2 + data.angry) / votes);
+            trend[name] = Math.round((data.overjoyed * 5 + data.happy * 4 + data.neutral * 3 + data.annoyed * 2 + data.angry) / votes);
             i = i + 1;
         }
     });
 
     obj.nbVote = obj.repart.overjoyed + obj.repart.happy + obj.repart.neutral + obj.repart.annoyed + obj.repart.angry;
-    obj.moyenne = Math.round((obj.repart.overjoyed * 5 + obj.repart.happy * 4 + obj.repart.neutral * 3 + obj.repart.annoyed * 2 + obj.repart.angry) / obj.nbVote);
+    var mathMoyene = Math.round((obj.repart.overjoyed * 5 + obj.repart.happy * 4 + obj.repart.neutral * 3 + obj.repart.annoyed * 2 + obj.repart.angry) / obj.nbVote);
+    var img = "overjoyed";
+    if (mathMoyene<=1.5) {
+        img="angry";
+    }
+    else if (mathMoyene>1.5 && mathMoyene<=2.5) {
+        img="annoyed";
+    }
+    else if (mathMoyene>2.5 && mathMoyene<=3.5) {
+        img="neutral";
+    }
+    else if (mathMoyene>3.5 && mathMoyene<=4.5) {
+        img="happy";
+    }
+    obj.moyenne = img;
 
+    console.log("API getData.moyenne="+obj.moyenne);
     res.status(200).json(obj);
 }
