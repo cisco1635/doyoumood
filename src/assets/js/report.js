@@ -1,6 +1,7 @@
 function generateDonut() {
     var donut = document.createElement('canvas');
     var div = document.getElementById("donutDiv"); 
+    removeChild(div);
     donut.id     = "donutChart";
     div.appendChild(donut);
     donut.parentNode.style.width = '400px';
@@ -23,7 +24,9 @@ function generateDonut() {
 
     var options = {
         animation : {animateRotate:true},
-        legend: {display: false}
+        legend: {display: false},
+        circumference :Math.PI,
+        rotation : Math.PI
     };
 
     var myPieChart = new Chart(donut,{
@@ -35,22 +38,35 @@ function generateDonut() {
 
 function generateLine() {
     var line = document.createElement('canvas');
-    var div = document.getElementById("lineDiv"); 
+    var div = document.getElementById("lineDiv");
+    removeChild(div);
     line.id     = "LineChart";
     div.appendChild(line);
     line.parentNode.style.height = '200px';
-    line.parentNode.style.width = '800px';
+    line.parentNode.style.width = '1100px';
     
     var data = {
         label: 'Tendance',
-        labels: ["J1", "J2", "J3", "J4", "J5"],
+        labels: ["J1", "J2", "J3", "J4", "J5", "J6", "J7", "J8", "J9", "J10", "J11"],
         datasets: [{
-            data: [3.5,2.9,2.9,2.6,3.6]
+            data: [3.5,2.9,2.9,2.6,3.6,4.1,4.2, 3.9,4.5,4.6,4.3]
         }]
     };
 
     var options = {
-        legend: {display: false}
+        legend: {display: false},
+        maintainAspectRatio :false,
+        responsive : true,
+        scales: {
+            yAxes: [{
+                display: true,
+                ticks: {
+                    suggestedMin: 0,
+                    suggestedMax: 5,
+                    stepSize: 1
+                }
+            }]
+        }
     };
 
     var myLineChart = new Chart(line,{
@@ -58,4 +74,10 @@ function generateLine() {
         data: data,
         options: options
     });
+}
+
+function removeChild(div) {
+    while (div.hasChildNodes()) {
+        div.removeChild(div.lastChild);
+    }
 }
