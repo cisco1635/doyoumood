@@ -66,3 +66,11 @@ h2 {
 .tileContentImage {
     width: 100%;
 }
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}

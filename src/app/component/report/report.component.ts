@@ -14,10 +14,12 @@ export class ReportComponent implements OnInit {
   lineChart=new Chart('lineCanvas', {});
   moyenne = "";
   nbVote = "";
+  showImg = false;
 
   constructor(private svc : ReportService, private elementRef: ElementRef) { }
 
   ngOnInit() {
+    this.showImg = false;
   }
 
   getData(date1, date2) {
@@ -57,14 +59,12 @@ export class ReportComponent implements OnInit {
       })
 
       // create lineChart
-      console.log(res["trend"]);
       var mylabels=[];
       var mydatas =[];
       for(var i in res["trend"] ) {
         mylabels.push(i);
         mydatas.push(res["trend"][i]);
       }
-      
       
       this.lineChart = new Chart('lineCanvas', {
         type: 'line',
@@ -85,6 +85,7 @@ export class ReportComponent implements OnInit {
               yAxes: [{
                   display: true,
                   ticks: {
+                    display:false,
                       suggestedMin: 0,
                       suggestedMax: 5,
                       stepSize: 1,
@@ -108,6 +109,8 @@ export class ReportComponent implements OnInit {
         }
       })
     });
+    
+    this.showImg = true;
   }
 
 }
