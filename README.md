@@ -1,7 +1,7 @@
 # doyoumood
 A simple app to measure mood of your team.
 
-# Next steps
+#### Next steps
 apply angular material
 set up mongodb instead of file
 think about a team view with authentication
