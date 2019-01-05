@@ -54,6 +54,5 @@ module.exports.getData = function (req, res) {
     }
     obj.moyenne = img;
 
-    console.log("API getData.moyenne="+obj.moyenne);
     res.status(200).json(obj);
 }
