@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ReportService } from '../../service/report.service';
 import { Chart } from 'chart.js';
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-report',
@@ -15,6 +16,8 @@ export class ReportComponent implements OnInit {
   moyenne = "";
   nbVote = "";
   showImg = false;
+  public date1 : Date;
+  public date2 : Date;
 
   constructor(private svc : ReportService, private elementRef: ElementRef) { }
 
@@ -22,11 +25,13 @@ export class ReportComponent implements OnInit {
     this.showImg = false;
   }
 
-  getData(date1, date2) {
-    this.svc.getData(date1, date2)
+  getData() {
+    this.svc.getData("20190101", "20190107")
     .subscribe(res => {
       this.nbVote = res["nbVote"];
       this.moyenne = "assets/images/"+res["moyenne"]+".png";
+
+      console.log("test");
 
       // create donutChart
       this.donutChart = new Chart('donutCanvas', {
@@ -112,5 +117,4 @@ export class ReportComponent implements OnInit {
     
     this.showImg = true;
   }
-
 }

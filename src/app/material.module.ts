@@ -1,0 +1,40 @@
+// material.module.ts
+
+import { NgModule } from '@angular/core';
+import { MatDatepickerModule,
+        MatNativeDateModule,
+        MatCardModule,
+        MatButtonModule,
+        MatProgressBarModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule  } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+@NgModule({
+  imports: [
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCardModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    BrowserAnimationsModule
+  ],
+  exports: [
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCardModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    BrowserAnimationsModule
+  ],
+  providers: [ MatDatepickerModule ],
+})
+
+export class MaterialModule {}

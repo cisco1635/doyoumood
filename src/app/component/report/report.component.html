@@ -1,18 +1,28 @@
+
+
 <div class="container col-xs-12 text-center form-inline" style="display: block;">
+    
   <form>
-    <div class="input-group col-xs-5">
-      <span class="input-group-addon">First date</span>
-      <input id="FirstDate" class="form-control" style="width: 90%">
-    </div>
-    <div class="input-group col-xs-5">
-      <span class="input-group-addon">Second date</span>
-      <input id="SecondDate" class="form-control" style="width: 90%">
+    <div class="input-group col-xs-2">
+      <mat-form-field></mat-form-field>
+        <input matInput [matDatepicker]="pickerdebut" placeholder="Date de début">
+        <mat-datepicker-toggle matSuffix [for]="pickerdebut"></mat-datepicker-toggle>
+        <mat-datepicker #pickerdebut></mat-datepicker>
+      </mat-form-field>
     </div>
     <div class="input-group col-xs-2">
-      <button class="btn btn-info form-control" type="button" id="search" style="width: 90%" (click)="getData(20181217,20181220)">
+      <mat-form-field>
+        <input matInput [matDatepicker]="pickerfin" placeholder="Date de fin">
+        <mat-datepicker-toggle matSuffix [for]="pickerfin"></mat-datepicker-toggle>
+        <mat-datepicker #pickerfin></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="input-group col-xs-3">
+      <button class="btn btn-info form-control" type="button" id="search" style="width: 90%" (click)="getData();">
         Search
       </button>
     </div>
+    <div class="input-group col-xs-5"></div>
   </form>
 </div>
 <br><br>
