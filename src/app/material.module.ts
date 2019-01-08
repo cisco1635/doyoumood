@@ -38,7 +38,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatInputModule,
     MatSnackBarModule,
-    MatMomentDateModule,
     BrowserAnimationsModule
   ],
   providers: [ MatDatepickerModule ],
