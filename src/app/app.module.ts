@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 
 import { VoteComponent } from './component/vote/vote.component';
 import { ReportComponent } from './component/report/report.component';
+import { LoginComponent } from './component/login/login.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'report',
     component: ReportComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: '',
@@ -35,7 +40,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     VoteComponent,
-    ReportComponent
+    ReportComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
