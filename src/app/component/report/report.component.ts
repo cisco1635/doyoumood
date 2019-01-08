@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ReportService } from '../../service/report.service';
 import { Chart } from 'chart.js';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
 
 @Component({
   selector: 'app-report',
