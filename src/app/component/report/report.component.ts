@@ -113,5 +113,4 @@ export class ReportComponent implements OnInit {
     
     this.showImg = true;
   }
-
 }
