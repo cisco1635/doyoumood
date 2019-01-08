@@ -8,8 +8,10 @@ import { MatDatepickerModule,
         MatProgressBarModule,
         MatFormFieldModule,
         MatIconModule,
-        MatInputModule   } from '@angular/material';
+        MatInputModule,
+        MatSnackBarModule } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter'
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -23,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatInputModule,
     BrowserAnimationsModule,
-    MatMomentDateModule 
+    MatMomentDateModule,
+    MatSnackBarModule
   ],
   exports: [
     MatDatepickerModule,
@@ -34,8 +37,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    BrowserAnimationsModule,
-    MatMomentDateModule 
+    MatSnackBarModule,
+    MatMomentDateModule,
+    BrowserAnimationsModule
   ],
   providers: [ MatDatepickerModule ],
 })
