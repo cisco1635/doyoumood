@@ -1,12 +1,36 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ReportService } from '../../service/report.service';
 import { Chart } from 'chart.js';
-import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+
+import * as _moment from 'moment';
+// tslint:disable-next-line:no-duplicate-imports
+import {default as _rollupMoment, Moment} from 'moment';
+
+const moment = _rollupMoment || _moment;
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
-  styleUrls: ['./report.component.css']
+  styleUrls: ['./report.component.css'],
+  providers: [
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ]
 })
 export class ReportComponent implements OnInit {
 
@@ -16,8 +40,8 @@ export class ReportComponent implements OnInit {
   moyenne = "";
   nbVote = "";
   showImg = false;
-  public date1 : Date;
-  public date2 : Date;
+  public fromDate : Moment;
+  public toDate : Moment;
 
   constructor(private svc : ReportService, private elementRef: ElementRef) { }
 
@@ -26,12 +50,14 @@ export class ReportComponent implements OnInit {
   }
 
   getData() {
-    this.svc.getData("20190101", "20190107")
+    const date1 = this.fromDate.year()+getMonth(this.fromDate)+getDay(this.fromDate);
+    const date2 = this.toDate.year()+getMonth(this.toDate)+getDay(this.toDate);
+    this.svc.getData(date1, date2)
     .subscribe(res => {
+      // todo : create an object with values
+      // todo : put suscribe in report.service.ts
       this.nbVote = res["nbVote"];
       this.moyenne = "assets/images/"+res["moyenne"]+".png";
-
-      console.log("test");
 
       // create donutChart
       this.donutChart = new Chart('donutCanvas', {
@@ -118,3 +144,13 @@ export class ReportComponent implements OnInit {
     this.showImg = true;
   }
 }
+
+function getMonth(moment) {
+  var month = moment.month() + 1;
+  return month < 10 ? '0' + month : '' + month;
+}  
+
+function getDay(moment) {
+  var day = moment.date();
+  return day < 10 ? '0' + day : '' + day;
+}  
