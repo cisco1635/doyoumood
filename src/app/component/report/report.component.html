@@ -1,18 +1,15 @@
-
-
 <div class="container col-xs-12 text-center form-inline" style="display: block;">
-    
   <form>
     <div class="input-group col-xs-2">
       <mat-form-field>
-        <input matInput [matDatepicker]="pickerdebut" placeholder="Date de début">
+        <input matInput [matDatepicker]="pickerdebut" placeholder="Date de début" [(ngModel)]="fromDate" name="fromDate">
         <mat-datepicker-toggle matSuffix [for]="pickerdebut"></mat-datepicker-toggle>
         <mat-datepicker #pickerdebut></mat-datepicker>
       </mat-form-field>
     </div>
     <div class="input-group col-xs-2">
       <mat-form-field>
-        <input matInput [matDatepicker]="pickerfin" placeholder="Date de fin">
+        <input matInput [matDatepicker]="pickerfin" placeholder="Date de fin" [(ngModel)]="toDate" name="toDate">
         <mat-datepicker-toggle matSuffix [for]="pickerfin"></mat-datepicker-toggle>
         <mat-datepicker #pickerfin></mat-datepicker>
       </mat-form-field>
