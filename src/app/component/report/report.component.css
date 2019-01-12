@@ -74,3 +74,11 @@ h2 {
 .show {
     visibility: visible;
 }
+
+.mat-button  {
+    background-color: #dedede;
+}
+
+.searchElement {
+    padding-left : 15px;
+}

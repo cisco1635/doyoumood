@@ -1,15 +1,12 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ReportService } from '../../service/report.service';
 import { Chart } from 'chart.js';
-import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
-import * as _moment from 'moment';
-// tslint:disable-next-line:no-duplicate-imports
-import {default as _rollupMoment, Moment} from 'moment';
+import { Moment } from 'moment';
 
-const moment = _rollupMoment || _moment;
-
+import * as moment from 'moment';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'DD/MM/YYYY',
@@ -28,7 +25,6 @@ export const MY_FORMATS = {
   styleUrls: ['./report.component.css'],
   providers: [
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
   ]
 })
@@ -47,6 +43,9 @@ export class ReportComponent implements OnInit {
 
   ngOnInit() {
     this.showImg = false;
+    // Init the datepickers with last week
+    this.fromDate = moment().days(-7);
+    this.toDate = moment();
   }
 
   getData() {
