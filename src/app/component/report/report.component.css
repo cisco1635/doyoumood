@@ -17,19 +17,19 @@
     width: 100%;
 }
 
-#tileVotes{
+.tileVotes{
     background: rgb(0,93,233);
 }
 
-#tileMoyenne{
+.tileMoyenne{
     background: rgb(71,193,228);
 }
 
-#tileRepartition{
+.tileRepartition{
     background: rgb(0,142,0);
 }
 
-#tileTendance{
+.tileTendance{
     background: rgb(209,70,37)
 }
 
@@ -60,7 +60,7 @@ h2 {
 }
 
 .tileContentText {
-    font-size: 1000%;
+    font-size:9vw;
 }
 
 .tileContentImage {
@@ -81,4 +81,8 @@ h2 {
 
 .searchElement {
     padding-left : 15px;
+}
+
+.paddingUp {
+    padding-top : 10px;
 }

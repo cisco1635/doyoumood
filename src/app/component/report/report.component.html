@@ -22,73 +22,68 @@
 </div>
 <div class="container col-xs-12 text-left form-inline" style="display: block;">
   <div class="col-sm-3">
-    <div id="tileVotes" class="smallTile">
-      <div class="tileHeader">
-        <h2>Votes</h2>
-      </div>
-      <div class="tileContent tileContentText">{{ nbVote }}</div>
-    </div>
+    <mat-card class="smallTile tileVotes">
+      <mat-card-title>Votes</mat-card-title>
+      <mat-card-content class="tileContentText">{{ nbVote }}</mat-card-content>
+    </mat-card>
   </div>
   <div class="col-sm-3">
-    <div id="tileMoyenne" class="smallTile">
-      <div class="tileHeader">
-        <h2>Moyenne</h2>
-      </div>
-      <div class="tileContent tileContentImage">
-        <img [attr.src]="moyenne">
-      </div>
-    </div>
+    <mat-card class="smallTile tileMoyenne">
+      <mat-card-title>Moyenne</mat-card-title>
+      <mat-card-content class="tileContentImage">
+          <img [attr.src]="moyenne">
+      </mat-card-content>
+    </mat-card>
   </div>
   <div class="col-sm-6">
-    <div id="tileRepartition" class="bigTile">
-      <div class="tileHeader">
-        <h2>Répartition</h2>
-      </div>
-      <table style="width:100%; height:80%;">
-        <tr>
-          <td>
-            <div [hidden]="!showImg">
-              <img src="assets/images/overjoyed.png" width="50" /><br />
-              <img src="assets/images/happy.png" width="50" /><br />
-              <img src="assets/images/neutral.png" width="50" /><br />
-              <img src="assets/images/annoyed.png" width="50" /><br />
-              <img src="assets/images/angry.png" width="50" />
-            </div>
-          </td>
-          <td style="width:80%">
-            <div id="donutDiv" *ngIf="donutChart" style="width:400px; text-align: center; margin : auto;">
-              <canvas id="donutCanvas">{{ donutChart }}</canvas>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
+    <mat-card class="bigTile tileRepartition">
+      <mat-card-title>Répartition</mat-card-title>
+      <mat-card-content>
+        <table style="width:100%; height:80%;">
+            <tr>
+              <td>
+                <div [hidden]="!showImg">
+                  <img src="assets/images/overjoyed.png" width="50" /><br />
+                  <img src="assets/images/happy.png" width="50" /><br />
+                  <img src="assets/images/neutral.png" width="50" /><br />
+                  <img src="assets/images/annoyed.png" width="50" /><br />
+                  <img src="assets/images/angry.png" width="50" />
+                </div>
+              </td>
+              <td style="width:80%">
+                <div id="donutDiv" *ngIf="donutChart" style="width:350px; text-align: center; margin : auto;">
+                  <canvas id="donutCanvas">{{ donutChart }}</canvas>
+                </div>
+              </td>
+            </tr>
+          </table>
+      </mat-card-content>
+    </mat-card>
   </div>
-  <br>
-  <div class="col-sm-12">
-    <div id="tileTendance" class="bigTile">
-      <div class="tileHeader">
-        <h2>Tendance</h2>
-      </div>
-      <table style="width:100%; height:100%;">
-        <tr>
-          <td style="width:60px; vertical-align: top; text-align: right">
-            <div [hidden]="!showImg">
-              <img src="assets/images/overjoyed.png" width="50" /><br />
-              <img src="assets/images/happy.png" width="50" /><br />
-              <img src="assets/images/neutral.png" width="50" /><br />
-              <img src="assets/images/annoyed.png" width="50" /><br />
-              <img src="assets/images/angry.png" width="50" />
-            </div>
-          </td>
-          <td style="vertical-align: top; padding-top: 10px;">
-            <div id="lineDiv" style="text-align: left; height:200px; width:100%;" *ngIf="lineChart">
-              <canvas id="lineCanvas">{{ lineChart }}</canvas>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
+  <div class="col-sm-12 paddingUp">
+    <mat-card class="bigTile tileTendance">
+      <mat-card-title>Tendance</mat-card-title>
+      <mat-card-content>
+        <table style="width:100%; height:100%;">
+            <tr>
+              <td style="width:60px; vertical-align: top; text-align: right">
+                <div [hidden]="!showImg">
+                  <img src="assets/images/overjoyed.png" width="50" /><br />
+                  <img src="assets/images/happy.png" width="50" /><br />
+                  <img src="assets/images/neutral.png" width="50" /><br />
+                  <img src="assets/images/annoyed.png" width="50" /><br />
+                  <img src="assets/images/angry.png" width="50" />
+                </div>
+              </td>
+              <td style="vertical-align: top; padding-top: 10px;">
+                <div id="lineDiv" style="text-align: left; height:200px; width:100%;" *ngIf="lineChart">
+                  <canvas id="lineCanvas">{{ lineChart }}</canvas>
+                </div>
+              </td>
+            </tr>
+          </table>
+      </mat-card-content>
+    </mat-card>
   </div>
   <div id="push"></div>
 </div>
