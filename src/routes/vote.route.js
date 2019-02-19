@@ -1,12 +1,13 @@
 module.exports = function(app) {
-  const vote = require('../controller/apiVote.js');
+  const voteController = require('../controller/apiVote.js');
   const report = require('../controller/apiReport.js');
   const main = require('../controller/main.js');
+  const Vote = require('../models/vote.js');
+  
  
-  app.get('/api/votes', vote.getVote);
-  app.post('/api/votes/:mood', vote.postVote);
+  // Get vote by id
+  app.get('/api/votes/:id', voteController.getVote);
 
-  app.get('/api/report/:begin/:end', report.getData);
-
-  app.get('/', main.get);
+  // Post a new vote
+  app.post('/api/votes/:mood', voteController.postVote);
 };

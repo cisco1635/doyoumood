@@ -10,6 +10,8 @@ module.exports.getData = function (req, res) {
     var data = fs.readFileSync(template, 'utf8');
     var obj = JSON.parse(data);
 
+    var report = new Report();
+
     // go through all files
     var i = 1;
     var trend = obj.trend;

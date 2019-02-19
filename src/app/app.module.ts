@@ -26,7 +26,9 @@ const routes: Routes = [
     redirectTo: '/vote',
     pathMatch: 'full'
   }
-]
+];
+
+const mongoose = require('mongodb');
 
 @NgModule({
   declarations: [

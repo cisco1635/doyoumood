@@ -1,10 +1,14 @@
+const constants = require ('../models/const');
 const fs = require('fs');
 const path = require('path');
+const Vote = require ('../models/vote');
 
 /**
  * post a vote
  */
-module.exports.postVote = function (req, res) {
+module.exports.postVoteOld = function (req, res) {
+
+    
     var obj;
 
     var d = new Date();
@@ -52,9 +56,33 @@ module.exports.postVote = function (req, res) {
     res.status(200).json(obj);
 }
 
+/*
+ * Get a vote by id
+ */
 module.exports.getVote = function (req, res) {
-    res.status(200).json({ "id": 1 });
+    Vote.findById(req.params.id, function (err, post) {
+        if (err) return next(err);
+        res.status(200).json(post);
+    });
 }
+
+/*
+ * Post a single new vote
+ */
+module.exports.postVote = function(req, res, next) {
+    // Set current date
+    req.body.date = Date.now();
+    // Update mood from id to string
+    req.body.mood = constants.MOOD[req.body.mood];
+
+    // Create object in database
+    Vote.create(req.body, function (err, post) {
+      if (err) return next(err);
+        res.status(200).json(post);
+    });
+}
+
+
 
 function getMonth(date) {
     var month = date.getMonth() + 1;
