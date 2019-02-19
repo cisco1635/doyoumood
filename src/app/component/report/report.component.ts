@@ -1,8 +1,9 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ReportService } from '../../service/report.service';
 import { Chart } from 'chart.js';
-import {MomentDateAdapter} from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { Report } from '../../models/report';
 
 import { Moment } from 'moment';
 
@@ -51,94 +52,93 @@ export class ReportComponent implements OnInit {
   getData() {
     const date1 = this.fromDate.year()+getMonth(this.fromDate)+getDay(this.fromDate);
     const date2 = this.toDate.year()+getMonth(this.toDate)+getDay(this.toDate);
-    this.svc.getData(date1, date2)
-    .subscribe(res => {
-      // todo : create an object with values
-      // todo : put suscribe in report.service.ts
-      this.nbVote = res["nbVote"];
-      this.moyenne = "assets/images/"+res["moyenne"]+".png";
+    this.svc.getData(date1, date2).subscribe((data:Report)=>{
+        this.nbVote = data.nbVote.toString();
+        this.moyenne = "assets/images/"+data.moyenne+".png";
 
-      // create donutChart
-      this.donutChart = new Chart('donutCanvas', {
-        type: 'pie',
-        data: {
-          labels: ["Overjoyed", "Happy", "Neutral", "Annoyed", "Angry"],
-          datasets: [{
-            data : [
-              res["repart"].overjoyed,
-              res["repart"].happy,
-              res["repart"].neutral,
-              res["repart"].annoyed,
-              res["repart"].angry],
-            backgroundColor: [
-              'rgb(0, 157, 224)',
-              'rgb(151, 191, 14)',
-              'rgb(242, 148, 0)',
-              'rgb(127, 0, 55)',
-              'rgb(255, 241, 96)'
-            ],
-            borderWidth: 0
-          }]
-        },
-        options: {
-          animation: { animateRotate: true },
-          legend: { display: false },
-          circumference: Math.PI,
-          rotation: Math.PI
-        }
-      })
-
-      // create lineChart
-      var mylabels=[];
-      var mydatas =[];
-      for(var i in res["trend"] ) {
-        mylabels.push(i);
-        mydatas.push(res["trend"][i]);
-      }
-      
-      this.lineChart = new Chart('lineCanvas', {
-        type: 'line',
-        data: {
-          labels: mylabels,
-          datasets: [{
-            data: mydatas,
-            pointBorderColor: "#000",
-            borderColor: "#000",
-            borderWidth: 3
-          }]
-        },
-        options: {
-          legend: { display: false },
-          maintainAspectRatio: false,
-          responsive: true,
-          scales: {
-              yAxes: [{
-                  display: true,
-                  ticks: {
-                    display:false,
-                      suggestedMin: 0,
-                      suggestedMax: 5,
-                      stepSize: 1,
-                      fontColor: "#FFF"
-                  },
-                  gridLines: {
-                      color: "#FFF"
-                  }
-              }],
-              xAxes: [{
-                  display: true,
-                  gridLines: {
-                      display: false,
-                      color: "#FFF"
-                  },
-                  ticks: {
-                      fontColor: "#FFF"
-                  },
-              }]
+        // create donutChart
+        this.donutChart = new Chart('donutCanvas', {
+          type: 'pie',
+          data: {
+            labels: ["Overjoyed", "Happy", "Neutral", "Annoyed", "Angry"],
+            datasets: [{
+              data : [
+                data.repart.overjoyed,
+                data.repart.happy,
+                data.repart.neutral,
+                data.repart.annoyed,
+                data.repart.angry
+              ],
+              backgroundColor: [
+                'rgb(0, 157, 224)',
+                'rgb(151, 191, 14)',
+                'rgb(242, 148, 0)',
+                'rgb(127, 0, 55)',
+                'rgb(255, 241, 96)'
+              ],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            animation: { animateRotate: true },
+            legend: { display: false },
+            circumference: Math.PI,
+            rotation: Math.PI
           }
+        })
+
+        // create lineChart
+        var mylabels=[];
+        var mydatas =[];
+        for(var i in data.trend ) {
+          mylabels.push(i);
+          mydatas.push(data.trend[i]);
         }
-      })
-    });
+
+        this.lineChart = new Chart('lineCanvas', {
+          type: 'line',
+          data: {
+            labels: mylabels,
+            datasets: [{
+              data: mydatas,
+              pointBorderColor: "#000",
+              borderColor: "#000",
+              borderWidth: 3
+            }]
+          },
+          options: {
+            legend: { display: false },
+            maintainAspectRatio: false,
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                      display:false,
+                        suggestedMin: 0,
+                        suggestedMax: 5,
+                        stepSize: 1,
+                        fontColor: "#FFF"
+                    },
+                    gridLines: {
+                        color: "#FFF"
+                    }
+                }],
+                xAxes: [{
+                    display: true,
+                    gridLines: {
+                        display: false,
+                        color: "#FFF"
+                    },
+                    ticks: {
+                        fontColor: "#FFF"
+                    },
+                }]
+            }
+          }
+        })  
+      }
+    );
     
     this.showImg = true;
   }

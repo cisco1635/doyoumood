@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-
+import { Report } from '../models/report';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +10,7 @@ export class ReportService {
   
   getData(date1, date2) {
     const uri = 'http://localhost:3000/api/report/' + date1 + '/' + date2;
-    return this.http.get(uri, {});
+    
+   return this.http.get<Report>(uri, {});
   }
 }
