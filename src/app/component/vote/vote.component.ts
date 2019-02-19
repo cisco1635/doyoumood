@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatProgressBarModule, MatSnackBar } from '@angular/material';
 
 import { VoteService } from '../../service/vote.service';
 
@@ -9,12 +10,22 @@ import { VoteService } from '../../service/vote.service';
 })
 export class VoteComponent implements OnInit {
 
-  constructor(private voteservice: VoteService) { }
+  constructor(private voteservice: VoteService, public snackBar : MatSnackBar) { }
 
   ngOnInit() {
+    
   }
 
   addVote(nb) {
     this.voteservice.addVote(nb);
+    this.openSnackBar(5-nb);
+  }
+
+  openSnackBar(vote: number) {
+    var labels = ["Overjoyed", "Happy", "Neutral", "Annoyed", "Angry"];
+    this.snackBar.open('Your mood \'' + labels[vote] + '\' was registered !','OK', 
+    {
+      duration: 2000,
+    });
   }
 }
