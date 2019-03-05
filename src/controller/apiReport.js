@@ -1,4 +1,6 @@
 const fs = require('fs');
+const Report = require ('../models/report');
+const Vote = require ('../models/vote');
 
 // get a report from begining date to end date
 module.exports.getData = function (req, res) {
@@ -9,8 +11,6 @@ module.exports.getData = function (req, res) {
     var template = './src/data/00000001.data';
     var data = fs.readFileSync(template, 'utf8');
     var obj = JSON.parse(data);
-
-    var report = new Report();
 
     // go through all files
     var i = 1;
@@ -59,3 +59,26 @@ module.exports.getData = function (req, res) {
     res.status(200).json(obj);
 }
 
+module.exports.getReportBetweenDate = function (req, res) {
+    var report = new Report();
+
+    var unformatedDateBegin = req.params.begin;
+    var unformatedDateBeginYear = unformatedDateBegin.substring(0,4);
+    var unformatedDateBeginMonth = unformatedDateBegin.substring(4,6);
+    var unformatedDateBeginDay = unformatedDateBegin.substring(6,8);
+
+    var unformatedDateEnd = req.params.end;
+    var unformatedDateEndYear = unformatedDateEnd.substring(0,4);
+    var unformatedDateEndMonth = unformatedDateEnd.substring(4,6);
+    var unformatedDateEndDay = unformatedDateEnd.substring(6,8);
+
+    var dateBegin = new Date(unformatedDateBeginYear,unformatedDateBeginMonth-1,unformatedDateBeginDay);
+    var dateEnd = new Date(unformatedDateEndYear,unformatedDateEndMonth-1,unformatedDateEndDay);
+    
+    console.log(dateBegin);
+    console.log(dateEnd);
+
+    var voteOverjoyed = Vote.countDocuments({"date" : {"$gte": new Date(dateBegin), "$lt": new Date(dateEnd)}}, function (err, count) {
+        console.log('there are %d voteOverjoyed', count);
+    });;
+}
