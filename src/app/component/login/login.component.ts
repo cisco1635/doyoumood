@@ -22,11 +22,7 @@ export class LoginComponent implements OnInit {
     constructor(private auth: AuthenticationService, private router: Router) {}
   
     login() {
-      this.auth.login(this.credentials).subscribe(() => {
-        this.router.navigateByUrl('/vote');
-      }, (err) => {
-        console.error(err);
-      });
+      this.auth.login(this.credentials);
     }
 
 }

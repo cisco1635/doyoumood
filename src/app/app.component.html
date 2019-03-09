@@ -1,15 +1,33 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li class="active">
+      <li *ngIf="auth.isLoggedIn()">
         <a routerLink="/vote" routerLinkActive="active">
           Vote
         </a>
       </li>
-      <li>
-        <a routerLink="/report" routerLinkActive="active">
+      <li *ngIf="auth.isLoggedIn()" >
+        <a routerLink="/report">
           Report
         </a>
+      </li>
+      <li *ngIf="auth.isLoggedIn()" >
+        <a routerLink="/profile" >
+          Profile
+        </a>
+      </li>
+      <li *ngIf="!auth.isLoggedIn()">
+        <a routerLink="/login" routerLinkActive="active">
+          Login
+        </a>
+      </li>
+      <li *ngIf="!auth.isLoggedIn()">
+        <a routerLink="/register">
+          Register
+        </a>
+      </li>
+      <li *ngIf="auth.isLoggedIn()">
+        <a (click)="auth.logout()">Logout</a>
       </li>
     </ul>
   </div>

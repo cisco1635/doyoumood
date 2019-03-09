@@ -7,9 +7,6 @@ import { User } from '../models/user';
 import { TokenPayload } from '../models/token-payload';
 import { TokenResponse } from '../models/token-response';
 
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -60,7 +57,7 @@ export class AuthenticationService {
     }
   }
 
-  private request(method: 'post'|'get', type: 'login'|'register'|'profile', user?: TokenPayload): any {
+  private request(method: 'post'|'get', type: 'login'|'register'|'profile', user?: TokenPayload):  any {
     let base;
   
     if (method === 'post') {
@@ -69,6 +66,7 @@ export class AuthenticationService {
           if (data.token) {
             this.saveToken(data.token);
           }
+          this.router.navigateByUrl('/vote');
           return data;
         }
       );

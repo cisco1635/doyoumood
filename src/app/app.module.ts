@@ -10,26 +10,37 @@ import { AppComponent } from './app.component';
 import { VoteComponent } from './component/vote/vote.component';
 import { ReportComponent } from './component/report/report.component';
 import { LoginComponent } from './component/login/login.component';
+import { RegisterComponent } from './component/register/register.component';
+import { ProfileComponent } from './component/profile/profile.component';
+
+import { AuthGuardService } from './service/auth-guard.service';
 
 import { MaterialModule } from './material.module';
+
 
 const routes: Routes = [
   {
     path: 'vote',
-    component: VoteComponent
+    component: VoteComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'report',
-    component: ReportComponent
+    component: ReportComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'login',
     component: LoginComponent
   },
   {
-    path: '',
-    redirectTo: '/vote',
-    pathMatch: 'full'
+    path: 'register',
+    component: RegisterComponent
   }
 ]
 
@@ -38,7 +49,9 @@ const routes: Routes = [
     AppComponent,
     VoteComponent,
     ReportComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
