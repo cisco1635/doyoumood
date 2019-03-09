@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var dbURI = 'mongodb://192.168.99.100/doyoumood';
+//var dbURI = 'mongodb://localhost/doyoumood';
 
 mongoose.connect(dbURI);
 
@@ -37,12 +38,14 @@ process.on('SIGINT', function() {
 	});
 });
 
-// For Heroku app termination
+// For app termination
 process.on('SIGTERM', function() {
-	gracefulShutdown('Heroku app termination', function() {
+	gracefulShutdown('app termination', function() {
 		process.exit(0);
 	});
 });
 
 require('./../models/user');
 require('./../models/vote');
+require('./../models/user');
+require('./../models/report');

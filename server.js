@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'dist/doyoumood')));
 /**
  * routing
  */
-const routes = require('./src/routes/vote.route.js');
+const routes = require('./src/routes/route.js');
 routes(app);
 
 /**

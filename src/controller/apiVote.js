@@ -1,10 +1,15 @@
+const constants = require ('../models/const');
 const fs = require('fs');
 const path = require('path');
+const mongoose = require('mongoose');
+const Vote = mongoose.model('Vote');
 
 /**
  * post a vote
  */
-module.exports.postVote = function (req, res) {
+module.exports.postVoteOld = function (req, res) {
+
+    
     var obj;
 
     var d = new Date();
@@ -52,9 +57,45 @@ module.exports.postVote = function (req, res) {
     res.status(200).json(obj);
 }
 
+/*
+ * Get a vote by id
+ */
 module.exports.getVote = function (req, res) {
-    res.status(200).json({ "id": 1 });
+    Vote.findById(req.params.id, function (err, post) {
+        if (err) return next(err);
+        res.status(200).json(post);
+    });
 }
+
+/*
+ * Post a single new vote
+ */
+module.exports.postVote = function(req, res, next) {
+	
+	console.log("start");
+	
+	console.log(req.params);
+    // Update mood from id to string
+	console.log(req.params.mood);
+	
+    req.params.mood = constants.MOOD[req.params.mood];
+
+	
+	console.log(req.params);
+	
+	var vote = new Vote();
+	vote.mood = req.params.mood;
+	vote.date = Date.now();
+	
+	console.log(vote);
+    // Create object in database
+    vote.save(function (err, post) {
+      if (err) return next(err);
+      res.status(200).json(post);
+    });
+}
+
+
 
 function getMonth(date) {
     var month = date.getMonth() + 1;
