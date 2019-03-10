@@ -13,7 +13,8 @@ export class LoginComponent implements OnInit {
 
     credentials: TokenPayload = {
       email: '',
-      password: ''
+      password: '',
+      role:''
     };
 
     ngOnInit() {

@@ -14,7 +14,8 @@ export class RegisterComponent implements OnInit {
   credentials: TokenPayload = {
     email: '',
     name: '',
-    password: ''
+    password: '',
+    role: 'user'
   };
 
   ngOnInit() {

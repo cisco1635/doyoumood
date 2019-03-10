@@ -9,6 +9,7 @@ module.exports = function(app) {
   const voteController = require('../controller/apiVote.js');
   const reportController = require('../controller/apiReport.js');
   const authController = require('../controller/apiProfile.js');
+  const userController = require('../controller/apiUser.js');
   const main = require('../controller/main.js');
 
   /*
@@ -37,7 +38,15 @@ module.exports = function(app) {
   app.post('/api/login', authController.login);
 
 
-   /*
+    /*
+  * ABOUT USERS API ROUTING
+  */ 
+  
+  // Login to the application
+  app.get('/api/users', userController.getAllUsers);
+  
+  
+  /*
   * ABOUT HTML
   */ 
   // Rend Angular application

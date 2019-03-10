@@ -1,7 +1,11 @@
-const fs = require('fs');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 
-// get a report from begining date to end date
-module.exports.postUser = function (req, res) {
 
-    res.status(200).json(obj);
+
+module.exports.getAllUsers = function (req, res) {
+
+    User.find({}, function(err, users) {
+		res.send(users);  
+	});
 }

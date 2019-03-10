@@ -16,6 +16,16 @@
           Profile
         </a>
       </li>
+      <li *ngIf="auth.isLoggedIn() && auth.getUserDetails().role == 'admin'" >
+        <a routerLink="/users" >
+          Users
+        </a>
+      </li>
+      <li *ngIf="auth.isLoggedIn() && auth.getUserDetails().role == 'admin'" >
+        <a routerLink="/teams" >
+          Teams
+        </a>
+      </li>
       <li *ngIf="!auth.isLoggedIn()">
         <a routerLink="/login" routerLinkActive="active">
           Login

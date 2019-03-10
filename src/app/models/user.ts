@@ -6,6 +6,8 @@ export class User {
 
     name: string;
 
+    role: string;
+
     exp: number;
 
     iat: number;
