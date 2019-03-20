@@ -2,8 +2,9 @@
 A simple app to measure mood of your team.
 
 ### Next steps
-- set up mongodb instead of file
-- think about a team view with authentication
+- Set up mongodb instead of file
+- Think about a team view with authentication
+- Manage different environment. At least DEV and PROD
 
 ### run in production
 
