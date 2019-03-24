@@ -16,6 +16,7 @@ Client side is served by node server
 At root level, launch 
   - "node server.js" 
   - "ng serve"
+
 In docker launch
   - "docker run -it -p 27017:27017 -d mongo"
 
