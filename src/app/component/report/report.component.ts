@@ -50,11 +50,12 @@ export class ReportComponent implements OnInit {
   }
 
   getData() {
-    const date1 = this.fromDate.year()+getMonth(this.fromDate)+getDay(this.fromDate);
+    const date1 = this.fromDate.year()+ getMonth(this.fromDate)+getDay(this.fromDate);
     const date2 = this.toDate.year()+getMonth(this.toDate)+getDay(this.toDate);
     this.svc.getData(date1, date2).subscribe((data:Report)=>{
+        
         this.nbVote = data.nbVote.toString();
-        this.moyenne = "assets/images/"+data.moyenne+".png";
+        this.imgmoyenne = "assets/images/"+data.imgmoyenne+".png";
 
         // create donutChart
         this.donutChart = new Chart('donutCanvas', {

@@ -9,7 +9,10 @@ let Report = new Schema({
     moyenne: {
       type: String
     },
-    Repart: {
+    imgmoyenne: {
+      type: String
+    },
+    repart: {
       type: Array
     },
     trend: {
