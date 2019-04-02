@@ -28,6 +28,8 @@ export class VoteComponent implements OnInit {
     this.vote.nb = this.chosenMood;
     this.voteservice.addVote(this.vote);
     this.openSnackBar(5-this.chosenMood);
+    this.chosenMood = 0;
+    this.vote.comment=null;
   }
 
   openSnackBar(vote: number) {
