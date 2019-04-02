@@ -19,7 +19,7 @@ module.exports = function(app) {
   app.get('/api/votes/:id', voteController.getVote);
 
   // Post a new vote
-  app.post('/api/votes/:mood', voteController.postVote);
+  app.post('/api/votes/', voteController.postVote);
 
   /*
   * ABOUT REPORT API ROUTING

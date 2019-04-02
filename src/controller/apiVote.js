@@ -16,11 +16,9 @@ module.exports.getVote = function (req, res) {
  * Post a single new vote
  */
 module.exports.postVote = function(req, res, next) {
-	
-	req.params.mood = constants.MOOD[req.params.mood];
-
 	var vote = new Vote();
-	vote.mood = req.params.mood;
+    vote.mood = req.body.nb;
+    vote.comment = req.body.comment;
 	vote.date = Date.now();
 	
     // Create object in database
@@ -29,8 +27,6 @@ module.exports.postVote = function(req, res, next) {
       res.status(200).json(post);
     });
 }
-
-
 
 function getMonth(date) {
     var month = date.getMonth() + 1;
