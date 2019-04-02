@@ -1,13 +1,32 @@
 <div class="container col-xs-12 text-center">
 	<h1>
-    Do you mood ?
+		Do you mood ?
 	</h1>
 	<br /><br /><br />
-	<div class="col-xs-12">
-		<img src="assets/images/overjoyed.png" width="200" (click)="addVote(5)" class="vote-button"/>
-		<img src="assets/images/happy.png" width="200" (click)="addVote(4)" class="vote-button"/>
-		<img src="assets/images/neutral.png" width="200" (click)="addVote(3)" class="vote-button"/>
-		<img src="assets/images/annoyed.png" width="200" (click)="addVote(2)" class="vote-button"/>
-		<img src="assets/images/angry.png" width="200" (click)="addVote(1)" class="vote-button"/>
-	</div>
+	<form>
+		<div class="col-xs-12">
+			<img src="assets/images/overjoyed.png" id="mood5" width="200" (click)="chooseMood(5)"
+			[ngClass]="{'vote-button':chosenMood!=5,'vote-button-chosen':chosenMood==5}"  />
+			<img src="assets/images/happy.png" id="mood4" width="200" (click)="chooseMood(4)"
+			[ngClass]="{'vote-button':chosenMood!=4,'vote-button-chosen':chosenMood==4}" />
+			<img src="assets/images/neutral.png" id="mood3" width="200" (click)="chooseMood(3)"
+			[ngClass]="{'vote-button':chosenMood!=3,'vote-button-chosen':chosenMood==3}" />
+			<img src="assets/images/annoyed.png" id="mood2" width="200" (click)="chooseMood(2)"
+			[ngClass]="{'vote-button':chosenMood!=2,'vote-button-chosen':chosenMood==2}" />
+			<img src="assets/images/angry.png" id="mood1" width="200" (click)="chooseMood(1)"
+			[ngClass]="{'vote-button':chosenMood!=1,'vote-button-chosen':chosenMood==1}" />
+		</div>
+		<br /><br /><br />
+		<div class="col-xs-12">
+			<div class="col-xs-2">&nbsp;</div>
+			<div class="col-xs-7">
+				<mat-form-field class="example-full-width">
+					<textarea matInput placeholder="Leave a comment" [(ngModel)]="vote.comment"
+					[ngModelOptions]="{standalone: true}"></textarea>
+				</mat-form-field>
+			</div>
+			<div class="col-xs-1 paddingtop"><button mat-raised-button color="accent" (click)="addVote()">vote !</button></div>
+			<div class="col-xs-2">&nbsp;</div>
+		</div>
+	</form>
 </div>

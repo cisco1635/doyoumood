@@ -9,6 +9,9 @@ let Vote = new Schema({
     team: {
       type: String
     },
+    comment: {
+      type: String
+    },
     mood: {
       type: String
     }

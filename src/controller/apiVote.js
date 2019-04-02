@@ -8,8 +8,7 @@ const Vote = mongoose.model('Vote');
  * post a vote
  */
 module.exports.postVoteOld = function (req, res) {
-
-    
+   
     var obj;
 
     var d = new Date();
@@ -71,20 +70,12 @@ module.exports.getVote = function (req, res) {
  * Post a single new vote
  */
 module.exports.postVote = function(req, res, next) {
-	
 	console.log("start");
-	
-	console.log(req.params);
-    // Update mood from id to string
-	console.log(req.params.mood);
-	
-    req.params.mood = constants.MOOD[req.params.mood];
-
-	
-	console.log(req.params);
+	console.log("body:" + JSON.stringify(req.body));
 	
 	var vote = new Vote();
-	vote.mood = req.params.mood;
+    vote.mood = req.body.nb;
+    vote.comment = req.body.comment;
 	vote.date = Date.now();
 	
 	console.log(vote);
@@ -94,8 +85,6 @@ module.exports.postVote = function(req, res, next) {
       res.status(200).json(post);
     });
 }
-
-
 
 function getMonth(date) {
     var month = date.getMonth() + 1;
