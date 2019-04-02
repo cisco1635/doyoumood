@@ -17,4 +17,7 @@ At root level, launch
   - "node server.js" 
   - "ng serve"
 
+In docker launch
+  - "docker run -it -p 27017:27017 -d mongo"
+
 Application will be visible at "http://localhost:4200" address
