@@ -3,7 +3,6 @@ import { MatProgressBarModule, MatSnackBar } from '@angular/material';
 
 import { VoteService } from '../../service/vote.service';
 import { Vote } from '../../models/vote';
-import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-vote',
