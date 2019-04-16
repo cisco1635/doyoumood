@@ -17,6 +17,10 @@
     width: 100%;
 }
 
+.bigTileWithoutHeight {
+    width: 100%;
+}
+
 .tileVotes{
     background: rgb(0,93,233);
 }
