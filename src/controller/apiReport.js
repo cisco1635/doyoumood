@@ -102,13 +102,10 @@ module.exports.getReportBetweenDate = function (req, res) {
             report.repart.neutral= result.filter(vote => vote.mood === 'neutral').length;
             report.repart.annoyed= result.filter(vote => vote.mood === 'annoyed').length;
             report.repart.angry= result.filter(vote => vote.mood === 'angry').length;
-            console.log("ResultRepart");
-            console.log(report.repart);
 
             // Calculate trend
             report.trend = calculTrendByDay(dateBegin, dateEnd, result);
-            console.log("ResultTrend");
-            console.log(report.trend);
+          
             // Calculate moyenne for these dates
             report.moyenne = Math.round(
                     report.repart.overjoyed * 5
@@ -134,8 +131,12 @@ module.exports.getReportBetweenDate = function (req, res) {
             }
 
             // push comment of each vote
-            if( result.comment !== null || result.comment.length >= 1 ) {
-                report.comments.push(result.comment);
+            report.comments = [];
+            
+            for(r=0; r < result.length; r++){
+                if ( result[r].comment !== null) {
+                    report.comments.push(result[r].comment);
+                }
             }
             
             res.status(200).json(report);
@@ -153,15 +154,13 @@ function calculTrendByDay(dateBegin, dateEnd, listOfVotes){
     for (d = dateBegin; d < dateEnd; d.setDate(d.getDate() + 1)) {
         d.setHours(0,0,0);
         voteByDay= listOfVotes.filter(vote => vote.date.getDate() == d.getDate());
-        console.log("Date " + d);
-        console.log(voteByDay);
         if(voteByDay.length > 0){
             trend[d]= voteByDay.filter(vote => vote.mood === "overjoyed").length * 5 
                 +   voteByDay.filter(vote => vote.mood === "happy").length * 4 
                 +   voteByDay.filter(vote => vote.mood === "neutral").length * 3 
                 +   voteByDay.filter(vote => vote.mood === "annoyed").length * 2
                 +   voteByDay.filter(vote => vote.mood === "angry").length;
-            console.log(trend[d]);
+
             trend[d] = Math.round(trend[d] / voteByDay.length);
         }
         else{
@@ -169,7 +168,5 @@ function calculTrendByDay(dateBegin, dateEnd, listOfVotes){
         }
     }
 
-    // console.log("Trend:");
-    // console.log(trend);
     return trend;
 }

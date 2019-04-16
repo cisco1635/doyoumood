@@ -91,12 +91,10 @@ export class ReportComponent implements OnInit {
         // create lineChart
         const mylabels =[];
         const mydatas = [];
-        enum months { "janv", "fev", "mars", "avril", "mai"};
+        enum months { "janv", "fev", "mars", "avril", "mai","juin","juill","août","sept","oct","nov","dec"};
 
         for(var i in data.trend){
           let d = new Date(i);
-          console.log(d);
-          console.log(i);
           let dateFormat = d.getDate() +  " " + months[d.getMonth()] + " " + d.getFullYear();
           mylabels.push(dateFormat);
           mydatas.push(data.trend[i]);
