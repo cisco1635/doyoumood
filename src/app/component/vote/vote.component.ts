@@ -26,7 +26,7 @@ export class VoteComponent implements OnInit {
   }
 
   addVote() {
-    this.vote.nb = this.labels[this.chosenMood];
+    this.vote.nb = this.labels[5 - this.chosenMood];
     this.voteservice.addVote(this.vote);
     this.openSnackBar(5-this.chosenMood);
     this.chosenMood = 0;

@@ -33,6 +33,10 @@
     background: rgb(209,70,37)
 }
 
+.tileCommentaires{
+    background: rgb(131, 131, 131)
+}
+
 .tilecaption{
     position: relative;
     top: 50%;
@@ -85,4 +89,8 @@ h2 {
 
 .paddingUp {
     padding-top : 10px;
+}
+
+.paddingBottom {
+    padding-bottom : 10px;
 }
