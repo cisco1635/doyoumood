@@ -12,22 +12,22 @@
         </a>
       </li>
       <li *ngIf="auth.isLoggedIn()" >
-        <a routerLink="/profile" >
+        <a routerLink="/profile">
           Profile
         </a>
       </li>
       <li *ngIf="auth.isLoggedIn() && auth.getUserDetails().role == 'admin'" >
-        <a routerLink="/users" >
+        <a routerLink="/users">
           Users
         </a>
       </li>
       <li *ngIf="auth.isLoggedIn() && auth.getUserDetails().role == 'admin'" >
-        <a routerLink="/teams" >
+        <a routerLink="/teams">
           Teams
         </a>
       </li>
       <li *ngIf="!auth.isLoggedIn()">
-        <a routerLink="/login" routerLinkActive="active">
+        <a routerLink="/login">
           Login
         </a>
       </li>
