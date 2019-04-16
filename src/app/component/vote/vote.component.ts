@@ -15,7 +15,7 @@ export class VoteComponent implements OnInit {
   
   chosenMood : number;
   vote : Vote;
-  labels = ["Overjoyed", "Happy", "Neutral", "Annoyed", "Angry"];
+  labels = ["overjoyed", "happy", "neutral", "annoyed", "angry"];
 
   ngOnInit() {
     this.vote = new Vote();

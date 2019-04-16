@@ -79,10 +79,8 @@
               </div>
             </td>
             <td style="vertical-align: top; padding-top: 10px;">
-              <div id="lineDiv" style="text-align: left; height:200px; width:100%;" *ngIf="lineChart">
-                  <div [hidden]="!lineChart">
+              <div id="lineDiv" style="text-align: left; height:180px; width:100%;" *ngIf="lineChart" [hidden]="!lineChart">
                 <canvas id="lineCanvas">{{ lineChart }}</canvas>
-                </div>
               </div>
             </td>
           </tr>
