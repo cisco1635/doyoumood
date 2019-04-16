@@ -79,8 +79,10 @@ module.exports.getReportBetweenDate = function (req, res) {
     var unformatedDateEndMonth = unformatedDateEnd.substring(4,6);
     var unformatedDateEndDay = unformatedDateEnd.substring(6,8);
 
-    var dateBegin = new Date(unformatedDateBeginYear,unformatedDateBeginMonth-1,unformatedDateBeginDay,1);
-    var dateEnd = new Date(unformatedDateEndYear,unformatedDateEndMonth-1,unformatedDateEndDay,new Date().getHours());
+    var dateBegin = new Date(unformatedDateBeginYear,unformatedDateBeginMonth-1,unformatedDateBeginDay);
+    console.log(dateBegin);
+    var dateEnd = new Date(unformatedDateEndYear,unformatedDateEndMonth-1,parseInt(unformatedDateEndDay)+1);
+    console.log(dateEnd);
  
     Vote.find({"date" : {"$gte": new Date(dateBegin), "$lte": new Date(dateEnd)}}, function (err, result) {
         if(!err){
@@ -124,7 +126,7 @@ module.exports.getReportBetweenDate = function (req, res) {
 
             // push comment of each vote
             report.comments = [];
-            
+
             for(r=0; r < result.length; r++){
                 if ( result[r].comment !== undefined) {
                     report.comments.push(result[r].comment);
@@ -153,7 +155,7 @@ function calculTrendByDay(dateBegin, dateEnd, listOfVotes){
                 +   voteByDay.filter(vote => vote.mood === "annoyed").length * 2
                 +   voteByDay.filter(vote => vote.mood === "angry").length;
 
-            trend[d] = Math.round(trend[d] / voteByDay.length);
+            trend[d] = trend[d] / voteByDay.length;
         }
         else{
             trend[d] = 0;

@@ -104,6 +104,7 @@ export class ReportComponent implements OnInit {
 
         this.lineChart = new Chart('lineCanvas', {
           type: 'line',
+          height:350,
           data: {
             labels: mylabels,
             datasets: [{
