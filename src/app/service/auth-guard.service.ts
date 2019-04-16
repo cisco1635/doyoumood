@@ -18,7 +18,6 @@ export class AuthGuardService {
       return true;
     }
     else if(this.auth.getUserDetails().role !== route.data.expectedRole) {
-      console.log(route.data.expectedRole);
       this.router.navigateByUrl('/vote');
       return true;
     }
