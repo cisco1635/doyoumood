@@ -9,6 +9,7 @@ import { MatDatepickerModule,
         MatFormFieldModule,
         MatIconModule,
         MatInputModule,
+        MatListModule,
         MatSnackBarModule } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter'
 
@@ -26,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     BrowserAnimationsModule,
     MatMomentDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatListModule
   ],
   exports: [
     MatDatepickerModule,
@@ -38,7 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatInputModule,
     MatSnackBarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatListModule
   ],
   providers: [ MatDatepickerModule ],
 })

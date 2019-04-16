@@ -25,7 +25,7 @@
 					[ngModelOptions]="{standalone: true}"></textarea>
 				</mat-form-field>
 			</div>
-			<div class="col-xs-1 paddingtop"><button mat-raised-button color="accent" (click)="addVote()">vote !</button></div>
+			<div class="col-xs-1 paddingtop"><button mat-raised-button color="accent" (click)="addVote()" [disabled]="chosenMood==0 || chosenMood==null">vote !</button></div>
 			<div class="col-xs-2">&nbsp;</div>
 		</div>
 	</form>
