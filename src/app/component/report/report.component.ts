@@ -53,7 +53,7 @@ export class ReportComponent implements OnInit {
     const date1 = this.fromDate.year()+ getMonth(this.fromDate)+getDay(this.fromDate);
     const date2 = this.toDate.year()+getMonth(this.toDate)+getDay(this.toDate);
     this.svc.getData(date1, date2).subscribe((data:Report)=>{
-        
+        console.log(data);
         this.nbVote = data.nbVote.toString();
         this.imgmoyenne = "assets/images/"+data.imgmoyenne+".png";
 
@@ -89,10 +89,16 @@ export class ReportComponent implements OnInit {
         })
 
         // create lineChart
-        var mylabels=[];
-        var mydatas =[];
-        for(var i in data.trend ) {
-          mylabels.push(i);
+        const mylabels =[];
+        const mydatas = [];
+        enum months { "janv", "fev", "mars", "avril", "mai"};
+
+        for(var i in data.trend){
+          let d = new Date(i);
+          console.log(d);
+          console.log(i);
+          let dateFormat = d.getDate() +  " " + months[d.getMonth()] + " " + d.getFullYear();
+          mylabels.push(dateFormat);
           mydatas.push(data.trend[i]);
         }
 
@@ -132,7 +138,7 @@ export class ReportComponent implements OnInit {
                         color: "#FFF"
                     },
                     ticks: {
-                        fontColor: "#FFF"
+                        fontColor: "#000"
                     },
                 }]
             }

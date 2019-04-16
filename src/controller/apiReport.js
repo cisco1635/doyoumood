@@ -1,7 +1,7 @@
 const constants = require ('../models/const');
 const mongoose = require('mongoose');
 const Vote = mongoose.model('Vote');
-const Report = mongoose.model('Report');
+// const Report = require ('../models/report');
 var trend;
 
 // get a report from begining date to end date
@@ -72,7 +72,7 @@ module.exports.getReportBetweenDate = function (req, res) {
 
     console.log("Entering getReportBetweenDate Function 'api report'");
 
-    var report = new Report();
+    var report = {};
 
     var unformatedDateBegin = req.params.begin;
     var unformatedDateBeginYear = unformatedDateBegin.substring(0,4);
@@ -84,29 +84,29 @@ module.exports.getReportBetweenDate = function (req, res) {
     var unformatedDateEndMonth = unformatedDateEnd.substring(4,6);
     var unformatedDateEndDay = unformatedDateEnd.substring(6,8);
     console.log("Day: " + unformatedDateEndDay);
-    // console.log(new Date().getHours());
 
     var dateBegin = new Date(unformatedDateBeginYear,unformatedDateBeginMonth-1,unformatedDateBeginDay,1);
     var dateEnd = new Date(unformatedDateEndYear,unformatedDateEndMonth-1,unformatedDateEndDay,new Date().getHours());
-
-    console.log(dateBegin);
-    console.log(dateEnd);
  
     Vote.find({"date" : {"$gte": new Date(dateBegin), "$lte": new Date(dateEnd)}}, function (err, result) {
         if(!err){
             // Total votes
             report.nbVote = result.length;
 
+            console.log(result);
+
             // Filter vote by 'mood'
-            report.repart = new Array();
+            report.repart = {};
             report.repart.overjoyed= result.filter(vote => vote.mood === 'overjoyed').length;
             report.repart.happy= result.filter(vote => vote.mood === 'happy').length;
             report.repart.neutral= result.filter(vote => vote.mood === 'neutral').length;
             report.repart.annoyed= result.filter(vote => vote.mood === 'annoyed').length;
             report.repart.angry= result.filter(vote => vote.mood === 'angry').length;
+            console.log("ResultRepart");
+            console.log(report.repart);
 
             // Calculate trend
-            report.trend = calculTrendByDay(dateBegin, dateEnd, result).slice(0);
+            report.trend = calculTrendByDay(dateBegin, dateEnd, result);
             console.log("ResultTrend");
             console.log(report.trend);
             // Calculate moyenne for these dates
@@ -140,24 +140,15 @@ module.exports.getReportBetweenDate = function (req, res) {
             res.status(500);
         }
     });
-
-    // voteOfefd
-    // fdescribefds
-    // fsqd
-    // fsqdqsdfsd
-    // fff
-
-    // console.log("Result:" +voteOverjoyed);
-
-    // res.status(200).json({});
 }
 
 function calculTrendByDay(dateBegin, dateEnd, listOfVotes){
     
-    trend = new Array();
+    trend = {};
     for (d = dateBegin; d < dateEnd; d.setDate(d.getDate() + 1)) {
         d.setHours(0,0,0);
         voteByDay= listOfVotes.filter(vote => vote.date.getDate() == d.getDate());
+        console.log("Date " + d);
         console.log(voteByDay);
         if(voteByDay.length > 0){
             trend[d]= voteByDay.filter(vote => vote.mood === "overjoyed").length * 5 
@@ -165,7 +156,7 @@ function calculTrendByDay(dateBegin, dateEnd, listOfVotes){
                 +   voteByDay.filter(vote => vote.mood === "neutral").length * 3 
                 +   voteByDay.filter(vote => vote.mood === "annoyed").length * 2
                 +   voteByDay.filter(vote => vote.mood === "angry").length;
-            
+            console.log(trend[d]);
             trend[d] = Math.round(trend[d] / voteByDay.length);
         }
         else{
@@ -173,7 +164,7 @@ function calculTrendByDay(dateBegin, dateEnd, listOfVotes){
         }
     }
 
-    console.log("Trend:");
-    console.log(trend);
+    // console.log("Trend:");
+    // console.log(trend);
     return trend;
 }
