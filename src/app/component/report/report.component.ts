@@ -34,7 +34,7 @@ export class ReportComponent implements OnInit {
   // Todo : on init error Failed to create chart: can't acquire context from the given item
   donutChart=new Chart('donutCanvas',{});
   lineChart=new Chart('lineCanvas', {});
-  moyenne = "";
+  imgmoyenne ="";
   nbVote = "";
   showImg = false;
   public fromDate : Moment;
