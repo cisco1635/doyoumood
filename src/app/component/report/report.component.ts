@@ -39,6 +39,7 @@ export class ReportComponent implements OnInit {
   showImg = false;
   public fromDate : Moment;
   public toDate : Moment;
+  comments={};
 
   constructor(private svc : ReportService, private elementRef: ElementRef) { }
 
@@ -55,7 +56,7 @@ export class ReportComponent implements OnInit {
     this.svc.getData(date1, date2).subscribe((data:Report)=>{
         
         this.nbVote = data.nbVote.toString();
-        this.imgmoyenne = "assets/images/"+data.imgmoyenne+".png";
+        //this.imgmoyenne = "assets/images/"+data.imgmoyenne+".png";
 
         // create donutChart
         this.donutChart = new Chart('donutCanvas', {
@@ -137,7 +138,9 @@ export class ReportComponent implements OnInit {
                 }]
             }
           }
-        })  
+        }) 
+        
+        this.comments = data.comments;
       }
     );
     

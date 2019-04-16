@@ -19,7 +19,7 @@ module.exports.postVote = function(req, res, next) {
 	var vote = new Vote();
     vote.mood = req.body.nb;
     vote.comment = req.body.comment;
-	vote.date = Date.now();
+	  vote.date = Date.now();
 	
     // Create object in database
     vote.save(function (err, post) {

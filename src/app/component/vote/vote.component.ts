@@ -15,6 +15,7 @@ export class VoteComponent implements OnInit {
   
   chosenMood : number;
   vote : Vote;
+  labels = ["Overjoyed", "Happy", "Neutral", "Annoyed", "Angry"];
 
   ngOnInit() {
     this.vote = new Vote();
@@ -25,7 +26,7 @@ export class VoteComponent implements OnInit {
   }
 
   addVote() {
-    this.vote.nb = this.chosenMood;
+    this.vote.nb = this.labels[this.chosenMood];
     this.voteservice.addVote(this.vote);
     this.openSnackBar(5-this.chosenMood);
     this.chosenMood = 0;
@@ -33,8 +34,7 @@ export class VoteComponent implements OnInit {
   }
 
   openSnackBar(vote: number) {
-    var labels = ["Overjoyed", "Happy", "Neutral", "Annoyed", "Angry"];
-    this.snackBar.open('Your mood \'' + labels[vote] + '\' was registered !','OK', 
+    this.snackBar.open('Your mood \'' + this.labels[vote] + '\' was registered !','OK', 
     {
       duration: 2000,
     });

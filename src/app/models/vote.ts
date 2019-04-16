@@ -1,4 +1,4 @@
 export class Vote {
-    nb : number;
+    nb : string;
     comment : string;
 }

@@ -3,6 +3,7 @@ export class Report {
     moyenne : string;
     repart : ReportRepart;
     trend : Array<number>;
+    comments : Array<string>;
 }
 
 export class ReportRepart {

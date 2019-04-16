@@ -132,6 +132,11 @@ module.exports.getReportBetweenDate = function (req, res) {
             else if (report.moyenne>3.5 && report.moyenne<=4.5) {
                 report.imgmoyenne= "happy";
             }
+
+            // push comment of each vote
+            if( result.comment !== null || result.comment.length >= 1 ) {
+                report.comments.push(result.comment);
+            }
             
             res.status(200).json(report);
         }
@@ -140,16 +145,6 @@ module.exports.getReportBetweenDate = function (req, res) {
             res.status(500);
         }
     });
-
-    // voteOfefd
-    // fdescribefds
-    // fsqd
-    // fsqdqsdfsd
-    // fff
-
-    // console.log("Result:" +voteOverjoyed);
-
-    // res.status(200).json({});
 }
 
 function calculTrendByDay(dateBegin, dateEnd, listOfVotes){

@@ -85,6 +85,11 @@
       </mat-card-content>
     </mat-card>
   </div>
+  <div class="col-sm-12 paddingUp">
+    <mat-nav-list>
+      <mat-list-item *ngFor="let comment of comments"> {{ comment }} </mat-list-item>
+    </mat-nav-list>
+  </div>
   <div id="push"></div>
 </div>
 <br>

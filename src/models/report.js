@@ -17,6 +17,9 @@ let Report = new Schema({
     },
     trend: {
       type: Array
+    },
+    comments: {
+      type: Array
     }
   });
 
