@@ -1,6 +1,6 @@
 export class Report {
     nbVote : number;
-    moyenne : string;
+    imgmoyenne : string;
     repart : ReportRepart;
     trend : Array<number>;
     comments : Array<string>;
