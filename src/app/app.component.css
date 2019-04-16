@@ -1,0 +1,12 @@
+a {
+    cursor:pointer;
+}
+
+li:hover {
+    background-color: #ff6600;
+}
+
+li.active {
+    background-color: #ff6600;
+    color : white;
+}
