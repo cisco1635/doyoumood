@@ -1,12 +1,10 @@
 const constants = require ('../models/const');
 const mongoose = require('mongoose');
 const Vote = mongoose.model('Vote');
-// const Report = require ('../models/report');
 var trend;
 
 // get a report from begining date to end date
 module.exports.getData = function (req, res) {
-    console.log("Entering getDate Function 'api report'");
     var path = './src/data';
     var nbVote = 0;
 
@@ -69,9 +67,6 @@ module.exports.getData = function (req, res) {
 }
 
 module.exports.getReportBetweenDate = function (req, res) {
-
-    console.log("Entering getReportBetweenDate Function 'api report'");
-
     var report = {};
 
     var unformatedDateBegin = req.params.begin;
@@ -83,7 +78,6 @@ module.exports.getReportBetweenDate = function (req, res) {
     var unformatedDateEndYear = unformatedDateEnd.substring(0,4);
     var unformatedDateEndMonth = unformatedDateEnd.substring(4,6);
     var unformatedDateEndDay = unformatedDateEnd.substring(6,8);
-    console.log("Day: " + unformatedDateEndDay);
 
     var dateBegin = new Date(unformatedDateBeginYear,unformatedDateBeginMonth-1,unformatedDateBeginDay,1);
     var dateEnd = new Date(unformatedDateEndYear,unformatedDateEndMonth-1,unformatedDateEndDay,new Date().getHours());
@@ -92,8 +86,6 @@ module.exports.getReportBetweenDate = function (req, res) {
         if(!err){
             // Total votes
             report.nbVote = result.length;
-
-            console.log(result);
 
             // Filter vote by 'mood'
             report.repart = {};
@@ -134,7 +126,7 @@ module.exports.getReportBetweenDate = function (req, res) {
             report.comments = [];
             
             for(r=0; r < result.length; r++){
-                if ( result[r].comment !== null) {
+                if ( result[r].comment !== undefined) {
                     report.comments.push(result[r].comment);
                 }
             }

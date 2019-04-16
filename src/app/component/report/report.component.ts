@@ -47,13 +47,15 @@ export class ReportComponent implements OnInit {
     // Init the datepickers with last week
     this.fromDate = moment().days(-7);
     this.toDate = moment();
+    this.donutChart = new Chart('donutCanvas', {});
+    this.lineChart = new Chart('lineCanvas', {});
   }
 
   getData() {
     const date1 = this.fromDate.year()+ getMonth(this.fromDate)+getDay(this.fromDate);
     const date2 = this.toDate.year()+getMonth(this.toDate)+getDay(this.toDate);
     this.svc.getData(date1, date2).subscribe((data:Report)=>{
-        console.log(data);
+
         this.nbVote = data.nbVote.toString();
         this.imgmoyenne = "assets/images/"+data.imgmoyenne+".png";
 
