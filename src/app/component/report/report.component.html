@@ -52,8 +52,10 @@
               </div>
             </td>
             <td style="width:80%">
-              <div id="donutDiv" *ngIf="donutChart" style="width:350px; text-align: center; margin : auto;">
-                <canvas id="donutCanvas">{{ donutChart }}</canvas>
+              <div id="donutDiv" style="width:350px; text-align: center; margin : auto;">
+                <div [hidden]="!donutChart">
+                  <canvas id="donutCanvas">{{ donutChart }}</canvas>
+                </div>
               </div>
             </td>
           </tr>
@@ -78,7 +80,9 @@
             </td>
             <td style="vertical-align: top; padding-top: 10px;">
               <div id="lineDiv" style="text-align: left; height:200px; width:100%;" *ngIf="lineChart">
+                  <div [hidden]="!lineChart">
                 <canvas id="lineCanvas">{{ lineChart }}</canvas>
+                </div>
               </div>
             </td>
           </tr>

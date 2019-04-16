@@ -31,9 +31,8 @@ export const MY_FORMATS = {
 })
 export class ReportComponent implements OnInit {
 
-  // Todo : on init error Failed to create chart: can't acquire context from the given item
-  donutChart=new Chart('donutCanvas',{});
-  lineChart=new Chart('lineCanvas', {});
+  donutChart=null;
+  lineChart=null;
   imgmoyenne ="";
   nbVote = "";
   showImg = false;
