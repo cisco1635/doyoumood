@@ -80,9 +80,7 @@ module.exports.getReportBetweenDate = function (req, res) {
     var unformatedDateEndDay = unformatedDateEnd.substring(6,8);
 
     var dateBegin = new Date(unformatedDateBeginYear,unformatedDateBeginMonth-1,unformatedDateBeginDay);
-    console.log(dateBegin);
     var dateEnd = new Date(unformatedDateEndYear,unformatedDateEndMonth-1,parseInt(unformatedDateEndDay)+1);
-    console.log(dateEnd);
  
     Vote.find({"date" : {"$gte": new Date(dateBegin), "$lte": new Date(dateEnd)}}, function (err, result) {
         if(!err){

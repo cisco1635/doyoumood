@@ -11,7 +11,6 @@ export class VoteService {
   
   addVote(vote : Vote) {
     const uri = 'http://localhost:3000/api/votes/';
-    console.log(vote);
     this.http.post(uri, vote)
              .subscribe(res => console.log('Done'));
   }
